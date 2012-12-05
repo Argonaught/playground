@@ -1,0 +1,35 @@
+Some sort of vague ambition to write a kernel
+
+to compile
+
+requirements
+surprisingly basic
+* gcc
+* as (GAS)
+* make
+
+just run make
+
+to run
+
+install qemu
+
+$ apt-get-install qemu
+$ pacman -S qemu
+
+Option 1
+
+find the length of the kernel in 512 byte blocks. last I checked it was 9
+
+run
+
+$ qemu -fda ./bin/kernel.img
+
+this will bring up a grub boot command line
+run 
+$ kernel 200+[THE SIZE OF THE KERNEL IN 512 BYTE BLOCKS] 
+$ boot
+
+done!
+
+in it's current state we simply print 'A' in the top left hand corner. Awsome!
