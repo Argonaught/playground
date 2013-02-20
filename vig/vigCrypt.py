@@ -12,7 +12,9 @@ import split
 import myFreqDist
 import shift
 import xor
-
+import grid
+import transpose
+import perpGrid
 def main():
         argparser = argparse.ArgumentParser(description='text file')
         argparser.add_argument('file', type=str, help='file to produce frequency distribution for')
@@ -24,8 +26,13 @@ def main():
 	argparser.add_argument('-d', '--outDir', type=str, default='.', help='directory to save files to')
 	argparser.add_argument('-a', '--ascii', help='text is ascii', action='store_true')
 	argparser.add_argument('-s', '--shiftByAlpha', help='-s N: split cipher text by N alphabets and shift on the basis of frequency analysis', type=int, default=0)
+	argparser.add_argument('-r', '--reverseShift', help='shift charcters backwards', action='store_true')
 	argparser.add_argument('-x', '--xorByAlpha', help='-x N: split cipher text by N alphabets and xor on the basis of frequency analysis', type=int, default=0)
 	argparser.add_argument('-c', '--common', help='most common letter in plain text alphabet', default='e')
+	argparser.add_argument('-g', '--grid', help='-g N: output the cipher text in a grid N chars wide', type=int, default=0)
+	argparser.add_argument('-t', '--transpose', help='-t N: output the cipher text in a grid N chars wide', metavar='N', nargs='+', type=int, default=0)
+	argparser.add_argument('-i', '--perpGrid', help='-g N: output the cipher text in a grid N chars wide', type=int, default=0)
+
         args = argparser.parse_args()
         
 	toker = WhitespaceTokenizer()
@@ -61,7 +68,7 @@ def main():
 
 	if args.shiftByAlpha > 0:
 		alphas = split.splitByAlpha(args.shiftByAlpha, ascString)
-		candidate = shift.shiftByAlpha(alphas, ascString, args.common)
+		candidate = shift.shiftByAlpha(alphas, ascString, args.common, args.reverseShift)
 		file = open(args.outDir + 'candidate.pln', 'w')
 		print(candidate) 
 	
@@ -69,8 +76,16 @@ def main():
                 alphas = split.splitByAlpha(args.xorByAlpha, ascString)
                 candidate = xor.xorByAlpha(alphas, ascString, args.common)
                 file = open(args.outDir + 'candidate.pln', 'w')
-                print(candidate) 
+                print(candidate)
 
+	if args.grid > 0:
+		grid.grid(ascString, args.grid) 
+
+        if args.perpGrid > 0:
+                perpGrid.grid(ascString, args.perpGrid)
+
+	if len(args.transpose) > 0:
+		transpose.transpose(ascString, args.transpose)
 
 if __name__ == "__main__":
         main()
