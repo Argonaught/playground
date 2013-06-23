@@ -55,14 +55,23 @@ in ex1.py implement mySort(arry)
 
 it should return the given array sorted (ascending or descending)
 
+2 hours
 1.Try to do it in quadratic time first O(n^2).
 
 This should be simple, but the next part is more challenging 	
 
+4 hours
 2. make the sorting work in linearithmic time O(n log n)
 hint: there are two well known algorithms that do this. one has quick in the name. the other has merge.
 
 bonus points for implementing both algorithms.
 
+8 hours
+3. Only for the hard core: Research and explain a complexity from here: http://en.wikipedia.org/wiki/Time_complexity that:
+	a. is not in the list above and...
+	b. does not have the work exponential in it
+
+	I don't know the answer myself so references please. Something like a 1 page essay. Good practice...
+	I have no idea what any 
 
  
