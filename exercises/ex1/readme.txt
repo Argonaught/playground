@@ -72,6 +72,5 @@ bonus points for implementing both algorithms.
 	b. does not have the work exponential in it
 
 	I don't know the answer myself so references please. Something like a 1 page essay. Good practice...
-	I have no idea what any 
 
  
